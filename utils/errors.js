@@ -1,6 +1,7 @@
 module.exports = Object.freeze({
     SOMETHING_WENT_WRONG: "Something went wrong",
     INVALID_REQUEST: "Invalid request format",
+    INVALID_ID: "Invalid ID",
     AUTH_FAILED: "Authorization Failed",
     USERNAME_TAKEN: "The Username is taken",
     USER_NOT_FOUND: "User not found",
