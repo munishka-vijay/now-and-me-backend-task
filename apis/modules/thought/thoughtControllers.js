@@ -1,4 +1,5 @@
 const thoughtRepository = require("./thoughtRepository");
+const replyRepository = require("../reply/replyRepository");
 const errorStrings = require("../../../utils/errors");
 
 exports.addThought = async (text, isAnonymous, userId) => {
@@ -91,19 +92,11 @@ exports.deleteThought = async (thoughtId, requestUserId) => {
 
     // Handle error
     if (deleted.error) {
-      throw Error(thoughtAdded.error);
+      throw Error(deleted.error);
     }
 
-
-    /**
-     * Note: We could have handled the above two deletes in a transactions, but according to
-     * https://www.digitalocean.com/community/tutorials/how-to-use-transactions-in-mongodb
-     * Because of the way they’re implemented in MongoDB, transactions can only be performed
-     * on MongoDB instances that are running as part of a larger cluster. And I am using MongoDB
-     * locally.
-     * Also, even if the second delete fails, there will never be any data inconsistency
-     * when making API calls (if we don't add other APIs).
-     */
+    // Delete all replies with the given thought ID
+    await replyRepository.deleteRepliesByThoughtId(thoughtId);
 
     return { success: true };
   } catch (err) {

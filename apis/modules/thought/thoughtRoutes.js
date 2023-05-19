@@ -118,4 +118,8 @@ router.delete("/:thoughtId", checkAuth, async (req, res, next) => {
   }
 });
 
+
+// Initializing reply routes
+router.use("/:thoughtId/replies", require("../reply/replyRoutes"));
+
 module.exports = router;
