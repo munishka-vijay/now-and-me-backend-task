@@ -106,23 +106,3 @@ exports.deleteThought = async (thoughtId, requestUserId) => {
     };
   }
 };
-
-
-
-
-
-
-// exports.getRemainingThoughts = async(userid, limit, offset) => {
-//   try {
-//     const remainingthoughts = await thoughtRepository.getRemainingThoughts(userid, limit, offset);
-//     // Handle error
-//     if (remainingthoughts.error) throw Error(remainingthoughts.error);
-//     return { remainingthoughts };
-//   } catch (err) {
-//     return {
-//       success: false,
-//       error: err.toString(),
-//     };
-//   }
-
-// }
